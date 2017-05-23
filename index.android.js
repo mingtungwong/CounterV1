@@ -11,6 +11,9 @@ import {
   Text,
   View
 } from 'react-native';
+
+import CountersContainer from './components/CountersContainer';
+
 import Prompt from 'react-native-prompt';
 
 export default class Counter extends Component {
@@ -52,7 +55,7 @@ export default class Counter extends Component {
                 onCancel = { () => {this.setState( {startingPointsPromptVisible: false} )} }
                 onSubmit = { (value) => this.setState( {startingPoints: +value, startingPointsPromptVisible: false}) } />
               </View>
-          :<Text>{`${this.state.numCounters}, ${this.state.startingPoints}`}</Text>
+          :<CountersContainer numCounters={this.state.numCounters} startingPoints={this.state.startingPoints}/>
         }
       </View>
     );
