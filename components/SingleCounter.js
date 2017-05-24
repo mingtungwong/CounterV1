@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
     AppRegistry,
     Text,
+    StyleSheet,
     View,
     Button
 } from 'react-native';
@@ -32,11 +33,29 @@ export default class SingleCounter extends Component {
 
     render() {
         return (
-            <View>
-                <Button title="-" onPress={this.decrease} /><Text>{this.state.points}</Text><Button title="+" onPress={this.increase}/>
+            <View style={styles.counterContainer}>
+                <Button style={styles.button} title="-" onPress={this.decrease} />
+                <Text style={styles.counterNumber}>{this.state.points}</Text>
+                <Button style={styles.button} title="+" onPress={this.increase}/>
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    counterNumber: {
+        fontWeight: 'bold',
+        fontSize: 50,
+    },
+    button: {
+        width: 50
+    },
+    counterContainer: {
+        flex: 0,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+});
 
 AppRegistry.registerComponent('SingleCounter', () => SingleCounter);

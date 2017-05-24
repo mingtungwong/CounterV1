@@ -15,7 +15,12 @@ export default class CountersContainer extends Component {
 
     render() {
         return (
-            <View>
+            <View style={{
+                flex: 0,
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
                 { (new Array(this.props.numCounters)).fill(0).map((val, idx) => <SingleCounter key={idx} points={this.props.startingPoints} />) }
             </View>
         )
