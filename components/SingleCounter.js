@@ -12,6 +12,7 @@ export default class SingleCounter extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: `Player ${this.props.playerNumber}`,
             defaultPoints: this.props.points,
             points: this.props.points
         }
@@ -41,7 +42,7 @@ export default class SingleCounter extends Component {
     render() {
         return (
             <View style={styles.counterContainer}>
-                <Text></Text>
+                <Text style={styles.playerTag}>{this.state.name}</Text>
                 <View style={styles.box1}>
                     <Button style={styles.button} title="-" onPress={this.decrease} />
                     <Text style={styles.counterNumber}>{this.state.points}</Text>
@@ -56,6 +57,10 @@ export default class SingleCounter extends Component {
 }
 
 const styles = StyleSheet.create({
+    playerTag: {
+        fontWeight: 'bold',
+        fontSize: 20
+    },
     counterNumber: {
         fontWeight: 'bold',
         fontSize: 50,

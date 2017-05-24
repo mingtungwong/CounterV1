@@ -17,7 +17,7 @@ export default class CountersContainer extends Component {
     render() {
         return (
             <ScrollView>
-                { (new Array(this.props.numCounters)).fill(0).map((val, idx) => <SingleCounter key={idx} points={this.props.startingPoints} />) }
+                { (new Array(this.props.numCounters)).fill(0).map((val, idx) => <SingleCounter key={idx} playerNumber={idx + 1} points={this.props.startingPoints} />) }
             </ScrollView>
         )
     }
