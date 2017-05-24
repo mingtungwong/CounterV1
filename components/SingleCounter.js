@@ -4,7 +4,8 @@ import {
     Text,
     StyleSheet,
     View,
-    Button
+    Button,
+    Alert
 } from 'react-native';
 
 import Prompt from 'react-native-prompt';
@@ -24,6 +25,7 @@ export default class SingleCounter extends Component {
         this.decrease = this.decrease.bind(this);
         this.resetPoints = this.resetPoints.bind(this);
         this.editName = this.editName.bind(this);
+        this.promptReset = this.promptReset.bind(this);
     }
 
     increase() {
@@ -46,6 +48,17 @@ export default class SingleCounter extends Component {
         this.setState({editPromptVisible: true});
     }
 
+    promptReset() {
+        Alert.alert(
+            'Reset',
+            'Are you sure you want to reset the points?',
+            [
+                { text: 'Cancel', onPress: () => {} },
+                { text: 'Okay', onPress: this.resetPoints}
+            ]
+        );
+    }
+
     render() {
         return (
             <View style={styles.counterContainer}>
@@ -59,7 +72,7 @@ export default class SingleCounter extends Component {
                     <Button style={styles.button} title="+" onPress={this.increase}/>
                 </View>
                 <View>
-                    <Button title="Reset" onPress={this.resetPoints} />
+                    <Button title="Reset" onPress={this.promptReset} />
                 </View>
                 <Prompt
                     title="Player Name"
