@@ -16,10 +16,7 @@ export default class CountersContainer extends Component {
 
     render() {
         return (
-            <ScrollView style={{
-                flex: 0,
-                flexDirection: 'column'
-            }}>
+            <ScrollView>
                 { (new Array(this.props.numCounters)).fill(0).map((val, idx) => <SingleCounter key={idx} points={this.props.startingPoints} />) }
             </ScrollView>
         )
