@@ -7,6 +7,8 @@ import {
     Button
 } from 'react-native';
 
+import Prompt from 'react-native-prompt';
+
 export default class SingleCounter extends Component {
     
     constructor(props) {
@@ -14,12 +16,14 @@ export default class SingleCounter extends Component {
         this.state = {
             name: `Player ${this.props.playerNumber}`,
             defaultPoints: this.props.points,
-            points: this.props.points
+            points: this.props.points,
+            editPromptVisible: false
         }
 
         this.increase = this.increase.bind(this);
         this.decrease = this.decrease.bind(this);
         this.resetPoints = this.resetPoints.bind(this);
+        this.editName = this.editName.bind(this);
     }
 
     increase() {
@@ -38,11 +42,17 @@ export default class SingleCounter extends Component {
         this.setState({points: this.state.defaultPoints});
     }
 
+    editName () {
+        this.setState({editPromptVisible: true});
+    }
 
     render() {
         return (
             <View style={styles.counterContainer}>
-                <Text style={styles.playerTag}>{this.state.name}</Text>
+                <View style={styles.box2}>
+                    <Button title='Edit' onPress={this.editName} />
+                    <Text style={styles.playerTag}>{this.state.name}</Text>
+                </View>
                 <View style={styles.box1}>
                     <Button style={styles.button} title="-" onPress={this.decrease} />
                     <Text style={styles.counterNumber}>{this.state.points}</Text>
@@ -51,6 +61,18 @@ export default class SingleCounter extends Component {
                 <View>
                     <Button title="Reset" onPress={this.resetPoints} />
                 </View>
+                <Prompt
+                    title="Player Name"
+                    defaultValue=""
+                    visible={this.state.editPromptVisible}
+                    onCancel= { () => {this.setState({editPromptVisible: false})}}
+                    onSubmit = { (value) => {
+                        this.setState({
+                            name: value,
+                            editPromptVisible: false
+                        })
+                    }
+                }/>
             </View>
         )
     }
@@ -78,6 +100,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    box2: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     }
 });
 
